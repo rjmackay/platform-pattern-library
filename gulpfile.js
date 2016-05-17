@@ -82,8 +82,7 @@ var buildSass = function(rtl, compressed) {
         .pipe(sass({
             includePaths : [
                 'bower_components/bourbon/app/assets/stylesheets',
-                'bower_components/neat/app/assets/stylesheets',
-                'bower_components/font-awesome/scss'
+                'bower_components/neat/app/assets/stylesheets'
             ],
             sourceComments: true,
             outputStyle : compressed ? 'compressed' : 'nested'
@@ -114,15 +113,16 @@ gulp.task('sass', ['rtl', 'sassMin', 'rtlMin'], function() {
 * Task: `rtl`
 * Converts RTL Sass files to RTL CSS
 */
-gulp.task('rtl', ['fontawesome-sass'], function() {
+
+gulp.task('rtl', function() {
     return buildSass(true, false);
 });
 
-gulp.task('rtlMin', ['fontawesome-sass'], function() {
+gulp.task('rtlMin', function() {
     return buildSass(true, true);
 });
 
-gulp.task('sassMin', ['fontawesome-sass'], function() {
+gulp.task('sassMin', function() {
     return buildSass(false, true);
 });
 
@@ -143,21 +143,20 @@ gulp.task('uglifyJS', function() {
     .pipe(livereload());
 });
 
-/**
- * Copy font awesome sass files to sass dir
- */
-gulp.task('fontawesome-sass', function() {
-    return gulp.src(['bower_components/fontawesome/scss/*'])
-        .pipe(gulp.dest('./assets/sass/utils/font-awesome'));
-});
-
-/**
-* Task: `font`
-* Copies font files to public directory.
-*/
-gulp.task('font', function() {
-    return gulp.src(['bower_components/fontawesome/fonts/fontawesome-*', 'bower_components/fontawesome/fonts/FontAwesome*'])
-        .pipe(gulp.dest('./assets/fonts'));
+gulp.task('uglifyCloudJS', function() {
+    return gulp.src(['./assets/js/custom/map.js','./assets/js/custom/toggle.js','./assets/js/cloud/*'])
+    .pipe(plumber({
+        errorHandler: errorHandler
+    }))
+    .pipe(babel({
+        presets: ['es2015']
+    }))
+    .pipe(uglify())
+    .pipe(concat('cloud.js'))
+    .pipe(plumber.stop())
+    .pipe(gulp.dest('./assets/js'))
+    .pipe(notify('JS minified and concatenated into cloud.js'))
+    .pipe(livereload());
 });
 
 /**
@@ -170,6 +169,7 @@ gulp.task('default', ['webserver'], function() {
 
     // Watch JS
     gulp.watch(['./assets/js/pattern-library/*', './assets/js/custom/*'], ['uglifyJS']);
+    gulp.watch(['./assets/js/cloud/*'], ['uglifyCloudJS']);
 
     // Watch Sass
     gulp.watch(['./assets/sass/**/*.scss'], ['sass']);
@@ -183,5 +183,5 @@ gulp.task('default', ['webserver'], function() {
 * Task: `build`
 * Builds sass, fonts and js
 */
-gulp.task('build', ['sass', 'uglifyJS', 'html', 'font'], function() {
+gulp.task('build', ['sass', 'uglifyJS', 'uglifyCloudJS', 'html'], function() {
 });

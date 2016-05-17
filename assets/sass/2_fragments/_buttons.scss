@@ -23,6 +23,24 @@ input[type="button"] {
         }
     }
 
+    .loading {
+        display: inline-block;
+        position: relative;
+        top: -6px;
+
+        .line {
+            width: $tiny-spacing;
+            height: $tiny-spacing;
+            @include equal-radius($tiny-spacing);
+            background-color: $white;
+            margin: 2px;
+        }
+
+        + .button-label {
+            @include margin-left($tiny-spacing);
+        }
+    }
+
     &[data-toggle] {
 
         &.active {
@@ -42,12 +60,26 @@ input[type="button"] {
     svg.iconic {
         fill: $color-primary-beta;
     }
+
+    .loading {
+
+        .line {
+            background-color: $color-primary-beta;
+        }
+    }
 }
 
 .button-beta {
 
     svg.iconic {
         fill: $link-color;
+    }
+
+    .loading {
+
+        .line {
+            background-color: $link-color;
+        }
     }
 }
 
@@ -56,12 +88,26 @@ input[type="button"] {
     svg.iconic {
         fill: $link-color;
     }
+
+    .loading {
+
+        .line {
+            background-color: $link-color;
+        }
+    }
 }
 
 .button-link {
 
     svg.iconic {
         fill: $link-color;
+    }
+
+    .loading {
+
+        .line {
+            background-color: $link-color;
+        }
     }
 }
 

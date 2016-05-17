@@ -154,10 +154,12 @@
         text-align: center;
         margin-top: -$base-spacing;
 
-        button {
+        button,
+        .button {
 
             &[disabled],
-            &:disabled {
+            &:disabled,
+            &.disabled {
                 opacity: 1;
                 color: $color-dark-delta;
             }
@@ -280,30 +282,11 @@
 
     .tier-view-all {
         clear: both;
-        margin: 0;
-        width: 100%;
-        font-weight: 600;
         text-align: center;
-        text-transform: uppercase;
-        border: $base-border;
-        border-top: 0px;
+        margin: $sm-spacing;
 
-        @include media($small) {
-            border-top: $base-border;
-        }
-
-        a {
-            display: block;
-            text-decoration: none;
-            padding: $base-spacing;
-            margin: -1px 0 0;
-            background-color: $white;
-
-            &:hover {
-                cursor: pointer;
-                background-color: $link-color;
-                color: $white;
-            }
+        @include media($medium) {
+            padding-top: $sm-spacing;
         }
     }
 
