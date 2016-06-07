@@ -47,13 +47,22 @@ $('input[type="date"]').pickadate({
     today: 'Choose today'
 });
 
+// Initialize time fields with 'PickaDate.js'
+$('input[type="time"]').pickatime({
+    format: 'h:i A',
+    klass: {
+        buttonClear: 'picker__button--clear button'
+    }
+});
+
+// Display search suggestions in dropdown when search input is in focus and has a value
 $('.searchbar-input').each(function(){
     var input = $(this).find('input[type="search"]'),
         dropdownMenu = $(this).find('.dropdown-menu');
 
     input.on('keyup', function(){
         if (input.val()) {
-            dropdownMenu.addClass('active');            
+            dropdownMenu.addClass('active');
         }
     });
 

@@ -51,7 +51,7 @@
                     Activity
                 </a>
             </li>
-            <li class="active"data-message="customize">
+            <li data-message="customize">
                 <a href="settings.html">
                     <svg class="iconic">
                         <use xlink:href="/assets/img/iconic-sprite.svg#cog"></use>
@@ -254,11 +254,9 @@
         <header class="mode-context-header">
             <ol class="breadcrumbs">
                 <li><a href="map.html">March on City Hall</a></li>
-                <li><a href="settings.html">Settings</a></li>
-                <li><a href="">Surveys</a></li>
             </ol>
 
-            <h1 class="mode-context-title">Edit Survey</h1>
+            <h1 class="mode-context-title">Police encounters</h1>
         </header>
 
         <span class="mode-context-trigger">
@@ -267,6 +265,10 @@
             </svg>
             <span class="label hidden">Show more/less</span>
         </span>
+
+        <div class="mode-context-body">
+            <p>Curabitur consectetur sem nec sem rutrum, ac mollis diam convallis.</p>
+        </div>
     </div>
 
 
@@ -275,44 +277,34 @@
         <div class="toolbar">
             <div class="button-group">
                 <button type="button" class="button-flat">Cancel</button>
-                <button type="button" class="button-alpha">Save</button>
+                <button type="button" class="button-alpha" onclick="messageToggle($('#required'))">Submit</button>
             </div>
         </div>
 
        <div class="main-col">
 
             <div class="form-sheet">
-                <div class="form-field title">
-                    <label class="hidden">Name</label>
-                    <input type="text" placeholder="Survey name" value="Getting around">
+                <div class="form-field form-field-adapt title">
+                    <div class="post-band" style="background-color: #E69327;"></div>
+                    <label>Title</label>
+                    <input type="text" value="">
                 </div>
 
-                <div class="form-field form-field-adapt">
-                    <label>
-                        Description
-                    </label>
-                    <textarea name="description" data-min-rows='1' rows='1'>Vestibulum faucibus efficitur erat. Mauris varius mollis consectetur. Ut et sem ut lacus rutrum dignissim.</textarea>
+                <!-- IF: Adding a new post w/o permission to manage who it's visible to -->
+                <div class="form-field">
+                    <strong>This post will need to be moderated</strong> before it's visible to the public.
                 </div>
-
-                <fieldset class="custom-fieldset" data-fieldset-type="color">
-                    <legend>Color</legend>
-
-                    <div class="form-field">
-                        <label class="hidden">Hex value</label>
-                        <input type="text" data-input-type="color" value="#A51A1A" />
-                    </div>
-                </fieldset>
-
+                <!-- ELSE IF: User has permission to manage who it's visible to
                 <fieldset class="custom-fieldset">
-                    <legend><span class="custom-fieldset-value">Who</span> can add to this survey</legend>
+                    <legend><span class="custom-fieldset-value">Who</span> can see this</legend>
 
                     <div class="form-field radio">
-                        <input type="radio" name="special" id="special1" value="you" />
+                        <input type="radio" name="special" id="special1" value="you" checked />
                         <label for="special1">Only you</label>
                     </div>
 
                     <div class="form-field radio">
-                        <input type="radio" name="special" id="special2" value="everyone" checked />
+                        <input type="radio" name="special" id="special2" value="everyone" />
                         <label for="special2">Everyone</label>
                     </div>
 
@@ -343,305 +335,145 @@
                         </div>
                     </div>
                 </fieldset>
+                END: IF -->
 
-            </div>
+               <!-- IF: User has permission to see other 'Tasks' //
+               <nav class="tabs-menu" data-tabs="tabs-tasks" data-tabs-hash>
+                   <ul>
+                       <li>
+                           <a href="#tasks-post">
+                               <svg class="iconic">
+                                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#file"></use>
+                               </svg>
+                               Post
+                           </a>
+                       </li>
+                       <li>
+                           <a href="#tasks-verify">
+                               <svg class="iconic">
+                                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#thumb-up"></use>
+                               </svg>
+                               Verify
+                           </a>
+                       </li>
+                       <li>
+                           <a href="#tasks-translate">
+                               <svg class="iconic">
+                                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#transfer"></use>
+                               </svg>
+                               Translate
+                           </a>
+                       </li>
+                   </ul>
+               </nav>
+               // END IF -->
 
-            <div class="listing card">
-                <h3 class="listing-heading">Fields</h3>
+               <div id="tasks-post" class="tabs-tasks">
+                   <div class="form-field form-field-adapt">
+                       <label>
+                           Description
+                       </label>
+                       <textarea name="description" data-min-rows='1' rows='1'></textarea>
+                   </div>
 
-                <nav class="tabs-menu" data-tabs="tasks-tabs">
-                    <ul>
-                        <li class="active">
-                            <a href="#tasks-post">
-                                <svg class="iconic">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#file"></use>
-                                </svg>
-                                Post
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#tasks-verify">
-                                <svg class="iconic">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#thumb-up"></use>
-                                </svg>
-                                Verify
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#tasks-translate">
-                                <svg class="iconic">
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#transfer"></use>
-                                </svg>
-                                Translate
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                   <div class="form-field">
+                       <label>Photo</label>
+                       <input type="file" />
+                   </div>
 
-                <div id="tasks-post" class="tasks-tabs">
+                   <fieldset id="categories">
+                       <legend>Categories</legend>
 
-                     <div class="listing-item">
-                         <div class="listing-item-primary">
-                             <h2 class="listing-item-title"><a href="">Title</a></h2>
-                         </div>
-                     </div>
+                       <div class="form-field checkbox">
+                           <label for="cat1"><input type="checkbox" id="cat1">Category 1</label>
+                       </div>
+                       <div class="form-field checkbox">
+                           <label for="cat2"><input type="checkbox" id="cat2">Category 2</label>
+                       </div>
+                       <div class="form-field checkbox">
+                           <label for="cat3"><input type="checkbox" id="cat3">Category 3</label>
+                       </div>
+                   </fieldset>
 
-                     <div class="listing-item">
-                         <div class="listing-item-primary">
-                             <h2 class="listing-item-title"><a href="">Description</a></h2>
-                         </div>
-                     </div>
+                   <div class="form-field">
+                       <label>Time &amp; date of encounter</label>
+                       <input type="datetime" />
+                   </div>
 
-                     <div class="listing-item">
-                         <div class="listing-item-select">
-                             <div class="buttons-updown">
-                                <button type="button" class="button-beta" disabled>
-                                    <svg class="iconic">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#chevron-top"></use>
-                                    </svg>
-                                    <span class="label hidden">Move up</span>
-                                </button>
-                                <button type="button" class="button-beta">
-                                    <svg class="iconic">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#chevron-bottom"></use>
-                                    </svg>
-                                    <span class="label hidden">Move down</span>
-                                </button>
-                            </div>
-                         </div>
+                   <div class="form-field location">
+                       <label>Location</label>
+                       <div id="map" class="map"></div>
 
-                         <div class="listing-item-primary">
-                             <h2 class="listing-item-title"><a href="">Location</a></h2>
-                         </div>
-                     </div>
+                       <div class="form-field">
+                           <input type="text" placeholder="lat,lng" />
+                           <button>Search</button>
+                       </div>
 
-                     <div class="listing-item">
-                         <div class="listing-item-select">
-                             <div class="buttons-updown">
-                                <button type="button" class="button-beta">
-                                    <svg class="iconic">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#chevron-top"></use>
-                                    </svg>
-                                    <span class="label hidden">Move up</span>
-                                </button>
-                                <button type="button" class="button-beta" disabled>
-                                    <svg class="iconic">
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#chevron-bottom"></use>
-                                    </svg>
-                                    <span class="label hidden">Move down</span>
-                                </button>
-                            </div>
-                         </div>
+                       <button class="button-flat">
+                           <svg class="iconic">
+                               <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#location"></use>
+                           </svg>
+                           <span class="button-label">Use your current location</span>
+                       </button>
+                   </div>
+               </div>
 
-                         <div class="listing-item-primary">
-                             <h2 class="listing-item-title"><a href="" data-modal="edit-field">Witness</a> <em>text field</em></h2>
-                         </div>
-                     </div>
+               <!-- IF: User has permission to see other 'Tasks'
+               <div id="tasks-verify" class="tabs-tasks">
+                   <div class="form-field switch">
+                       <label>Verified</label>
+                       <div class="toggle-switch">
+                           <input class="tgl" id="switch1" type="checkbox" checked>
+                           <label class="tgl-btn" for="switch1"></label>
+                       </div>
+                   </div>
 
-                     <div class="listing-item">
-                         <div class="listing-item-primary">
-                             <h2 class="listing-item-title">
-                                 <a href="" class="button button-flat" data-modal="add-field">
-                                     <svg class="iconic">
-                                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#plus"></use>
-                                     </svg>
-                                    Add field
-                                 </a>
-                             </h2>
-                         </div>
-                     </div>
+                   <div class="form-field form-field-adapt">
+                       <label>
+                           Notes
+                       </label>
+                       <textarea name="description" data-min-rows='1' rows='1'></textarea>
+                   </div>
+               </div>
 
-                </div>
+               <div id="tasks-translate" class="tabs-tasks">
+                   <div class="form-field switch">
+                       <label>Translation completed</label>
+                       <div class="toggle-switch">
+                           <input class="tgl" id="switchT" type="checkbox">
+                           <label class="tgl-btn" for="switchT"></label>
+                       </div>
+                   </div>
+               </div>
+               // END IF -->
 
-                <div id="tasks-verify" class="tasks-tabs">
+           </div>
 
-                    <div class="listing-item">
-                        <div class="listing-item-secondary">
-                            <button type="button" class="button-beta button-flat listing-item-toggle">
-                                <svg class="iconic">
-                                  <use xlink:href="/assets/img/iconic-sprite.svg#chevron-bottom"></use>
-                                </svg>
-                                <span class="button-label">Configure</span>
-                            </button>
-                        </div>
+        </div> <!-- END main column -->
 
-                        <div class="listing-item-primary">
-                            <h2 class="listing-item-title"><a href="">Verified</a> <em>toggle switch</em></h2>
-                        </div>
+    </main> <!-- END main container -->
 
-                        <div class="listing-item-body">
-                            <form>
-                                <div class="form-field switch">
-                                   <label>Require the post be verified before it can be visible to the public</label>
-                                   <div class="toggle-switch">
-                                      <input class="tgl" id="switch1" type="checkbox">
-                                      <label class="tgl-btn" for="switch1"></label>
-                                   </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="listing-item">
-                        <div class="listing-item-primary">
-                            <h2 class="listing-item-title"><a href="">Notes</a> <em>long text</em></h2>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div id="tasks-translate" class="tasks-tabs">
-
-                    <div class="listing-item">
-                        <div class="listing-item-secondary">
-                            <button type="button" class="button-beta button-flat listing-item-toggle">
-                                <svg class="iconic">
-                                  <use xlink:href="/assets/img/iconic-sprite.svg#chevron-bottom"></use>
-                                </svg>
-                                <span class="button-label">Configure</span>
-                            </button>
-                        </div>
-
-                        <div class="listing-item-primary">
-                            <h2 class="listing-item-title"><a href="">Translation completed</a> <em>toggle switch</em></h2>
-                        </div>
-
-                        <div class="listing-item-body">
-                            <form>
-                                <div class="form-field switch">
-                                   <label>Require this be completed before the post can be visible to the public</label>
-                                   <div class="toggle-switch">
-                                      <input class="tgl" id="switch1" type="checkbox">
-                                      <label class="tgl-btn" for="switch1"></label>
-                                   </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="form-sheet">
-                <div class="form-sheet-summary">
-                    <h3 class="form-sheet-title">Delete this survey</h3>
-                </div>
-
-                <div class="form-field">
-                    <p><strong>If you delete this survey</strong>, all of its posts will also be deleted. Proceed with caution.</p>
-
-                    <button class="button-destructive">
-                        <svg class="iconic">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#trash"></use>
-                        </svg>
-                        <span class="button-label">Delete survey</span>
-                    </button>
-                </div>
-            </div>
-
+    <div id="required" class="message">
+        <div class="message-image error">
+            <svg class="iconic">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#warning"></use>
+            </svg>
         </div>
 
-    </main>
+        <div class="message-body">
+            <p><strong>Please select at least one category</strong> before submitting this survey.</p>
 
-    <div id="add-field" class="modal">
-        <div class="modal-window">
-            <button href="" class="button-beta button-flat modal-trigger modal-trigger-close">
-                <svg class="iconic">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#x"></use>
-                </svg>
-               <span class="hidden">Close</span>
+            <a href="#categories" class="button button-beta button-flat message-trigger">Edit categories</a>
+
+            <button class="button-flat message-trigger">
+                Dismiss
             </button>
-
-           <h3 class="modal-title">Add field</h3>
-
-           <dl class="modal-body">
-              <dt class="list-item"><a href="" data-modal="edit-field">Short text</a></dt>
-              <dd>A sentence or less</dd>
-
-              <dt class="list-item"><a href="">Long text</a></dt>
-              <dd>Multiple sentences or paragraphs</dd>
-
-              <dt class="list-item"><a href="">Number</a></dt>
-              <dd></dd>
-
-              <dt class="list-item"><a href="">Location</a></dt>
-              <dd></dd>
-
-              <dt class="list-item"><a href="">Date</a></dt>
-              <dd></dd>
-
-              <dt class="list-item"><a href="">Time</a></dt>
-              <dd></dd>
-
-              <dt class="list-item"><a href="">Radio Button(s)</a></dt>
-              <dd>Allows the user to choose only one of a predefined set of options.</dd>
-
-              <dt class="list-item"><a href="">Checkbox(es)</a></dt>
-              <dd>Allows the user to choose one or more of a predefined set of options.</dd>
-
-              <dt class="list-item"><a href="">Related Post Type</a></dt>
-              <dd></dd>
-           </dl>
         </div>
-
-        <div class="modal-overlay"></div>
-     </div>
-
-     <div id="edit-field" class="modal">
-        <div class="modal-window">
-            <button href="" class="button-beta button-flat modal-trigger modal-trigger-close">
-                <svg class="iconic">
-                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/assets/img/iconic-sprite.svg#x"></use>
-                </svg>
-               <span class="hidden">Close</span>
-            </button>
-
-           <h3 class="modal-title">Edit field <em>short text</em></h3>
-
-           <div class="form-field">
-              <label>Name</label>
-              <input type="text" value="Witness" />
-           </div>
-
-           <div class="form-field">
-              <label>Key</label>
-              <input type="text" value="witness" />
-           </div>
-
-           <div class="form-field">
-              <label>Default value</label>
-              <input type="text" />
-           </div>
-
-           <div class="form-field switch">
-              <label>Require this field be completed</label>
-              <div class="toggle-switch">
-                 <input class="tgl" id="switch1" type="checkbox">
-                 <label class="tgl-btn" for="switch1"></label>
-              </div>
-           </div>
-
-           <div class="form-field switch">
-              <label>Include this field in filters</label>
-              <div class="toggle-switch">
-                 <input class="tgl" id="switch2" type="checkbox">
-                 <label class="tgl-btn" for="switch2"></label>
-              </div>
-           </div>
-
-           <div class="form-field">
-              <button type="button" class="button-alpha modal-trigger">Save &amp; close</button>
-           </div>
-        </div>
-
-        <div class="modal-overlay"></div>
-     </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 <script src="../../js/app.js"></script>
-
 
 </body>
 

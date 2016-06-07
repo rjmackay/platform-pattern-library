@@ -66,6 +66,17 @@ fieldset {
       margin: $tiny-spacing 0;
    }
 
+   .post-band {
+
+       + label {
+           margin-left: $sm-spacing;
+
+           + input {
+               margin-left: $sm-spacing;
+           }
+       }
+   }
+
    // REQUIRED FIELD
    &.required {
 
@@ -151,6 +162,7 @@ fieldset {
           top: 0;
           @include left(0);
       }
+
    }
 
    // TITLE
@@ -164,26 +176,6 @@ fieldset {
          max-width: none;
          @include typeBeta;
          padding: $sm-spacing;
-      }
-   }
-
-   // SEARCH
-   &.search {
-
-      label {
-         display: none;
-      }
-
-      input[type="search"],
-      input[type="text"] {
-         @include padding-left($lg-spacing);
-      }
-
-      svg.iconic {
-          position: absolute;
-          top: 13px;
-          @include left(16px);
-          fill: $color-primary;
       }
    }
 
@@ -263,17 +255,14 @@ fieldset {
 
    &.date {
 
+/*
        svg.iconic {
            position: absolute;
            top: 11px;
            @include left(16px);
            fill: $color-primary;
        }
-
-       input[type="date"],
-       input[type="datetime"] {
-          @include padding-left($lg-spacing);
-       }
+*/
 
        input[type="date"] {
            padding-right: 4px;
@@ -393,10 +382,47 @@ fieldset {
    }
 }
 
+.input-with-icon {
+    position: relative;
+
+    input[type="text"],
+    input[type="color"],
+    input[type="date"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="email"],
+    input[type="month"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="time"],
+    input[type="url"],
+    input[type="week"] {
+       @include padding-left($lg-spacing);
+    }
+
+    svg.iconic {
+        position: absolute;
+        top: 13px;
+        @include left(16px);
+        fill: $color-primary;
+    }
+}
+
 fieldset {
 
     .custom-select {
         margin-top: -6px;
+    }
+}
+
+.form-field {
+
+    .form-fieldgroup {
+        border-top: none;
+        padding-top: 0;
+        margin-top: $sm-spacing;
     }
 }
 
