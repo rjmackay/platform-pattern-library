@@ -199,8 +199,7 @@
 
         .button-link {
             color: $color-secondary;
-            padding-top: 0;
-            padding-bottom: 0;
+            padding: 0;
 
             svg.iconic {
                 fill: $color-secondary;
@@ -256,7 +255,7 @@
 
             .mode-context-title {
                 width: 100%;
-                overflow-x: scroll;
+                overflow-x: hidden;
                 white-space: nowrap;
                 padding-right: $huge-spacing;
 
